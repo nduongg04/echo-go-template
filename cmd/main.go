@@ -2,7 +2,6 @@ package main
 
 import (
 	"context"
-	"fmt"
 	"log"
 	"net/http"
 	"os"
@@ -41,7 +40,6 @@ func main() {
 	e.Use(security.SecurityHeaders())
 	e.Use(security.RateLimiter())
 	e.Use(security.Timeout(10 * time.Second))
-	fmt.Println(cfg.DBUrl)
 	db, err := gorm.Open(postgres.Open(cfg.DBUrl), &gorm.Config{})
 	if err != nil {
 		log.Fatalf("Failed to connect to database: %v", err)
